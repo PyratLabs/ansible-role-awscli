@@ -1,0 +1,30 @@
+---
+
+- name: Prepare containers for local-user install testing
+  hosts: all
+  become: true
+  tasks:
+    - name: Ensure a user group exists
+      group:
+        name: user
+        state: present
+
+    - name: Ensure a normal user exists
+      user:
+        name: awsuser
+        group: user
+        state: present
+
+    - name: Ensure prerequisite python3 packages are installed
+      package:
+        name:
+          - python3
+          - python3-pip
+        state: present
+
+    - name: Ensure Python3 venv and dev package is available when not included in Linux Distribution
+      package:
+        name:
+          - python3-venv
+        state: present
+      when: ansible_os_family | lower in ['debian']

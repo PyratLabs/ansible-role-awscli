@@ -1,0 +1,26 @@
+---
+
+- name: Ensure the awscli install directory exists
+  file:
+    path: "{{ awscli_install_dir }}"
+    state: directory
+
+- name: Ensure awscli is installed in a virtual environment
+  pip:
+    name: awscli
+    version: "{{ awscli_version }}"
+    state: present
+    virtualenv: "{{ awscli_install_dir }}/awscli-{{ awscli_version }}"
+    virtualenv_command: "{{ awscli_python3_path }} -m venv"
+
+- name: Ensure the current release is symlinked in the install directory
+  file:
+    src: "{{ awscli_install_dir }}/awscli-{{ awscli_version }}"
+    dest: "{{ awscli_install_dir }}/{{ awscli_current_dirname }}"
+    state: link
+
+- name: Ensure venv wrapper exists in virtualenv bin directory
+  template:
+    src: venv.sh.j2
+    dest: "{{ awscli_install_dir }}/awscli-{{ awscli_version }}/bin/venv"
+    mode: 0755

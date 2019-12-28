@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    awscli_install_os_dependencies: true
+    awscli_install_dir: /opt/awscli/bin
+    awscli_current_dirname: current
+  roles:
+    - role: xanmanning.awscli

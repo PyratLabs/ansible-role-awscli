@@ -1,0 +1,12 @@
+---
+
+- name: Get the version information of the latest release of awscli
+  uri:
+    url: https://pypi.org/pypi/awscli/json
+    return_content: true
+    body_format: json
+  register: awscli_get_latest_version
+
+- name: Ensure the awscli_version variable is set
+  set_fact:
+    awscli_version: "{{ awscli_get_latest_version.json.info.version }}"

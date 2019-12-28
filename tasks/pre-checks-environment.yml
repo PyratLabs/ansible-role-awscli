@@ -1,0 +1,13 @@
+---
+
+- name: Check the path for Python
+  command: which python3
+  register: awscli_check_python_3_path
+  failed_when: awscli_check_python_3_path.rc > 0
+  changed_when: false
+  when: awscli_python3_path is not defined
+
+- name: Ensure the path to Python 3 is set as a fact
+  set_fact:
+    awscli_python3_path: "{{ awscli_check_python_3_path.stdout }}"
+  when: awscli_python3_path is not defined

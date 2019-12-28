@@ -1,0 +1,13 @@
+---
+
+# Use a specific version of awscli, eg. `2.9.0`. Specify `false` for latest.
+awscli_version: false
+
+# Installation directory to put awscli virtual environments.
+awscli_install_dir: "{{ ansible_user_dir }}/awscli"
+
+# Name for the currently active awscli Virtualenv.
+awscli_current_dirname: current
+
+# Allow role to install OS dependencies.
+awscli_install_os_dependencies: false
