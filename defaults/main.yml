@@ -4,10 +4,10 @@
 awscli_version: false
 
 # Installation directory to put awscli virtual environments.
-awscli_install_dir: "{{ ansible_user_dir }}/awscli"
+awscli_install_dir: "{{ ansible_user_dir }}/.virtualenvs"
 
 # Name for the currently active awscli Virtualenv.
-awscli_current_dirname: current
+awscli_current_dirname: awscli
 
 # Allow role to install OS dependencies.
 awscli_install_os_dependencies: false

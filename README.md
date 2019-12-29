@@ -25,13 +25,13 @@ my spare time so I cannot promise a speedy fix delivery.
 ## Role Variables
 
 
-| Variable                         | Description                                                                   | Default Value             |
-|----------------------------------|-------------------------------------------------------------------------------|---------------------------|
-| `awscli_version`                 | Use a specific version of awscli, eg. `1.16.309`. Specify `false` for latest. | `false`                   |
-| `awscli_install_dir`             | Installation directory to put awscli virtual environments.                    | `$HOME/awscli`            |
-| `awscli_current_dirname`         | Name for the currently active awscli Virtualenv.                              | current                   |
-| `awscli_install_os_dependencies` | Allow role to install OS dependencies.                                        | `false`                   |
-| `awscli_python3_path`            | Specify a path to a specific python version to use in virtualenv.             | _NULL_                    |
+| Variable                         | Description                                                                   | Default Value        |
+|----------------------------------|-------------------------------------------------------------------------------|----------------------|
+| `awscli_version`                 | Use a specific version of awscli, eg. `1.16.309`. Specify `false` for latest. | `false`              |
+| `awscli_install_dir`             | Installation directory to put awscli virtual environments.                    | `$HOME/.virtualenvs` |
+| `awscli_current_dirname`         | Name for the currently active awscli Virtualenv.                              | awscli               |
+| `awscli_install_os_dependencies` | Allow role to install OS dependencies.                                        | `false`              |
+| `awscli_python3_path`            | Specify a path to a specific python version to use in virtualenv.             | _NULL_               |
 
 ## Dependencies
 
@@ -67,14 +67,14 @@ You need to activate the python3 virtual environment to be able to access `az`.
 This is done as per the below:
 
 ```bash
-source {{ azure_install_dir }}/{{ azure_current_dirname }}/bin/activate
+source {{ awscli_install_dir }}/{{ awscli_current_dirname }}/bin/activate
 ```
 
 In the above example global installation playbook, this would look like the
 following:
 
 ```bash
-source /opt/azure/bin/current/bin/activate
+source /opt/awscli/bin/current/bin/activate
 ```
 
 ## License
