@@ -5,6 +5,7 @@
     name:
       - python3
       - python3-pip
+      - python3-setuptools
     state: present
   when: ansible_pkg_mgr == "yum"
 
@@ -13,5 +14,6 @@
     name:
       - python3
       - python3-pip
+      - python3-setuptools
     state: present
   when: ansible_pkg_mgr == "dnf"

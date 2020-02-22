@@ -10,4 +10,5 @@
 - name: Ensure the path to Python 3 is set as a fact
   set_fact:
     awscli_python3_path: "{{ awscli_check_python_3_path.stdout }}"
+    awscli_ansible_python_interpreter: "{{ ansible_python_interpreter | default(omit) }}"
   when: awscli_python3_path is not defined
