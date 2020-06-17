@@ -5,6 +5,7 @@
   vars:
     awscli_install_os_dependencies: true
     awscli_install_dir: /opt/awscli/bin
+    awscli_bin_dir: /usr/bin
     awscli_current_dirname: current
   roles:
     - role: xanmanning.awscli

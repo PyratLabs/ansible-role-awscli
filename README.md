@@ -30,6 +30,8 @@ my spare time so I cannot promise a speedy fix delivery.
 | `awscli_version`                 | Use a specific version of awscli, eg. `1.16.309`. Specify `false` for latest. | `false`              |
 | `awscli_install_dir`             | Installation directory to put awscli virtual environments.                    | `$HOME/.virtualenvs` |
 | `awscli_current_dirname`         | Name for the currently active awscli Virtualenv.                              | awscli               |
+| `awscli_install_venv_helper`     | Install a venv helper to launch venv executables from a "bin" directory.      | `true`               |
+| `awscli_bin_dir`                 | "bin" directory to install venv-helpers to.                                   | `$HOME/bin`          |
 | `awscli_install_os_dependencies` | Allow role to install OS dependencies.                                        | `false`              |
 | `awscli_python3_path`            | Specify a path to a specific python version to use in virtualenv.             | _NULL_               |
 
@@ -56,6 +58,7 @@ Example playbook for installing the latest awscli version globally:
   vars:
     awscli_install_os_dependencies: true
     awscli_install_dir: /opt/awscli/bin
+    awscli_bin_dir: /usr/bin
     awscli_current_dirname: current
   roles:
     - role: xanmanning.awscli

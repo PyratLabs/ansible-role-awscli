@@ -5,6 +5,13 @@
     path: "{{ awscli_install_dir }}"
     state: directory
 
+- name: Ensure the azure-cli bin directory exists
+  file:
+    path: "{{ awscli_bin_dir }}"
+    state: directory
+  when: awscli_install_venv_helper is defined
+        and awscli_install_venv_helper
+
 - name: Ensure Python 3 interpreter is used by Ansible
   set_fact:
     ansible_python_interpreter: "{{ awscli_python3_path }}"
@@ -33,3 +40,15 @@
     src: venv.sh.j2
     dest: "{{ awscli_install_dir }}/awscli-{{ awscli_version }}/bin/venv"
     mode: 0755
+  loop:
+    - python
+
+- name: Ensure venv helper exists for az in bin directory
+  template:
+    src: venv.sh.j2
+    dest: "{{ awscli_bin_dir }}/{{ item }}"
+    mode: 0755
+  loop:
+    - aws
+  when: awscli_install_venv_helper is defined
+        and awscli_install_venv_helper

@@ -9,5 +9,11 @@ awscli_install_dir: "{{ ansible_user_dir }}/.virtualenvs"
 # Name for the currently active awscli Virtualenv.
 awscli_current_dirname: awscli
 
+# Install a venv helper to launch virtualenv executables from a "bin" directory
+awscli_install_venv_helper: true
+
+# "bin" directory for venv helper installation
+awscli_bin_dir: "{{ ansible_user_dir }}/bin"
+
 # Allow role to install OS dependencies.
 awscli_install_os_dependencies: false
