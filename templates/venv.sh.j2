@@ -2,4 +2,6 @@
 
 source "{{ awscli_install_dir }}/{{ awscli_current_dirname }}/bin/activate"
 
-{{ awscli_install_dir }}/{{ awscli_current_dirname }}/bin/python $@
+{{ awscli_install_dir }}/{{ awscli_current_dirname }}/bin/{{ item }} $@
+
+deactivate
