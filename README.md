@@ -30,6 +30,7 @@ my spare time so I cannot promise a speedy fix delivery.
 | `awscli_version`                 | Use a specific version of awscli, eg. `1.16.309`. Specify `false` for latest. | `false`              |
 | `awscli_install_dir`             | Installation directory to put awscli virtual environments.                    | `$HOME/.virtualenvs` |
 | `awscli_current_dirname`         | Name for the currently active awscli Virtualenv.                              | awscli               |
+| `awscli_venv_site_packages`      | Allow venv to inherit packages from global site-packages.                     | `false`              |
 | `awscli_install_venv_helper`     | Install a venv helper to launch venv executables from a "bin" directory.      | `true`               |
 | `awscli_bin_dir`                 | "bin" directory to install venv-helpers to.                                   | `$HOME/bin`          |
 | `awscli_install_os_dependencies` | Allow role to install OS dependencies.                                        | `false`              |

@@ -23,6 +23,7 @@
     state: present
     virtualenv: "{{ awscli_install_dir }}/awscli-{{ awscli_version }}"
     virtualenv_command: "{{ awscli_python3_path }} -m venv"
+    virtualenv_site_packages: "{{ awscli_venv_site_packages | default(False) }}"
 
 - name: Ensure the originally configured Python interpreter is used by Ansible
   set_fact:
@@ -43,7 +44,7 @@
   loop:
     - python
 
-- name: Ensure venv helper exists for az in bin directory
+- name: Ensure venv helper exists for aws in bin directory
   template:
     src: venv.sh.j2
     dest: "{{ awscli_bin_dir }}/{{ item }}"
