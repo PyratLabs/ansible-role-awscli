@@ -6,8 +6,11 @@ awscli_version: false
 # Installation directory to put awscli virtual environments.
 awscli_install_dir: "{{ ansible_user_dir }}/.virtualenvs"
 
-# Name for the currently active awscli Virtualenv.
-awscli_current_dirname: awscli
+# Name for the awscli Virtualenv.
+awscli_venv_name: awscli
+
+# Add a custom suffix to virtualenv (default: awscli_version)
+awscli_venv_suffix: false
 
 # Allow venv to inherit packages from global site-packages
 awscli_venv_site_packages: false

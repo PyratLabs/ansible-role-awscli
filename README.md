@@ -29,7 +29,8 @@ my spare time so I cannot promise a speedy fix delivery.
 |----------------------------------|-------------------------------------------------------------------------------|----------------------|
 | `awscli_version`                 | Use a specific version of awscli, eg. `1.16.309`. Specify `false` for latest. | `false`              |
 | `awscli_install_dir`             | Installation directory to put awscli virtual environments.                    | `$HOME/.virtualenvs` |
-| `awscli_current_dirname`         | Name for the currently active awscli Virtualenv.                              | awscli               |
+| `awscli_venv_name`               | Name for the currently active awscli Virtualenv.                              | awscli               |
+| `awscli_venv_suffix`             | Add a custom suffix to virtualenv.                                            | `awscli_version`     |
 | `awscli_venv_site_packages`      | Allow venv to inherit packages from global site-packages.                     | `false`              |
 | `awscli_install_venv_helper`     | Install a venv helper to launch venv executables from a "bin" directory.      | `true`               |
 | `awscli_bin_dir`                 | "bin" directory to install venv-helpers to.                                   | `$HOME/bin`          |
@@ -60,18 +61,18 @@ Example playbook for installing the latest awscli version globally:
     awscli_install_os_dependencies: true
     awscli_install_dir: /opt/awscli/bin
     awscli_bin_dir: /usr/bin
-    awscli_current_dirname: current
+    awscli_venv_name: current
   roles:
     - role: xanmanning.awscli
 ```
 
 ### Activating the awscli venv
 
-You need to activate the python3 virtual environment to be able to access `az`.
+You need to activate the python3 virtual environment to be able to access `aws`.
 This is done as per the below:
 
 ```bash
-source {{ awscli_install_dir }}/{{ awscli_current_dirname }}/bin/activate
+source {{ awscli_install_dir }}/{{ awscli_venv_name }}/bin/activate
 ```
 
 In the above example global installation playbook, this would look like the

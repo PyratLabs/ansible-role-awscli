@@ -2,33 +2,33 @@
 
 - name: Check to see if the awscli version directory exists
   stat:
-    path: "{{ awscli_install_dir }}/awscli-{{ awscli_version }}"
+    path: "{{ awscli_install_dir }}/{{ awscli_venv_name }}-{{ awscli_venv_suffix }}"
   register: awscli_check_version_dir
 
 - name: Fail if the awscli version directory doesn't exist
   fail:
-    msg: "{{ awscli_install_dir }}/awscli-{{ awscli_version }} is missing after play."
+    msg: "{{ awscli_install_dir }}/{{ awscli_venv_name }}-{{ awscli_venv_suffix }} is missing after play."
   when: not awscli_check_version_dir.stat.exists
 
 - name: Check to see if the awscli current symlink exists
   stat:
-    path: "{{ awscli_install_dir }}/{{ awscli_current_dirname }}"
+    path: "{{ awscli_install_dir }}/{{ awscli_venv_name }}"
   register: awscli_check_symlink_dir
 
 - name: Fail if the awscli symlink directory doesn't exist
   fail:
-    msg: "{{ awscli_install_dir }}/{{ awscli_current_dirname }} symlink not correct after play."
+    msg: "{{ awscli_install_dir }}/{{ awscli_venv_name }} symlink not correct after play."
   when: not awscli_check_symlink_dir.stat.exists
         or not awscli_check_symlink_dir.stat.islnk
-        or awscli_check_symlink_dir.stat.lnk_target != (awscli_install_dir + "/awscli-" + awscli_version)
+        or awscli_check_symlink_dir.stat.lnk_target != (awscli_install_dir + "/" + awscli_venv_name + "-" + awscli_venv_suffix)
 
 - name: Check to see if the awscli version directory is a virtualenv
   stat:
-    path: "{{ awscli_install_dir }}/{{ awscli_current_dirname }}/bin/activate"
+    path: "{{ awscli_install_dir }}/{{ awscli_venv_name }}/bin/activate"
   register: awscli_check_virtualenv_dir
 
 - name: Fail if the awscli virtualenv directory doesn't exist
   fail:
-    msg: "{{ awscli_install_dir }}/{{ awscli_current_dirname }}/bin/activate not found after play."
+    msg: "{{ awscli_install_dir }}/{{ awscli_venv_name }}/bin/activate not found after play."
   when: not awscli_check_virtualenv_dir.stat.exists
         or not awscli_check_virtualenv_dir.stat.isreg
